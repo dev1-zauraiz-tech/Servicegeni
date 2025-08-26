@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - ServiceGeni{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 520px; margin: 0 auto;">
+  <h1 style="margin-bottom: 1rem;">Create your account</h1>
+  <form method="post" action="{{ url_for('sign_up') }}" style="display: grid; gap: 1rem;">
+    <div>
+      <label class="form-label">Full Name</label>
+      <input name="name" class="form-control" required />
+    </div>
+    <div>
+      <label class="form-label">Email</label>
+      <input name="email" type="email" class="form-control" required />
+    </div>
+    <div>
+      <label class="form-label">Password</label>
+      <input name="password" type="password" minlength="6" class="form-control" required />
+    </div>
+    <div>
+      <label class="form-label">Confirm Password</label>
+      <input name="confirm_password" type="password" minlength="6" class="form-control" required />
+    </div>
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+  </form>
+  <p class="mt-2">Already have an account?
+     <a href="{{ url_for('sign_in') }}">Sign in</a>
+  </p>
+</div>
+{% endblock %}

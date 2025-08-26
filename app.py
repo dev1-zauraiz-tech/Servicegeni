@@ -1,10 +1,36 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 from datetime import datetime
 import json
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'
+
+# Database configuration (SQLite file db.sqlite3 in project root)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def set_password(self, password: str) -> None:
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password: str) -> bool:
+        return check_password_hash(self.password_hash, password)
+
+
+with app.app_context():
+    db.create_all()
 
 # Sample articles data
 articles = [
@@ -173,6 +199,60 @@ def homepage():
 def get_started():
     return render_template('get_started.html')
 
+# Auth routes
+@app.route('/sign-up', methods=['POST'])
+def sign_up():
+    # Accept either combined name or first/last from the Get Started form
+    name = request.form.get('name', '').strip()
+    first_name = request.form.get('first_name', '').strip()
+    last_name = request.form.get('last_name', '').strip()
+    if not name:
+        name = (first_name + ' ' + last_name).strip()
+
+    email = request.form.get('email', '').strip().lower()
+    password = request.form.get('password', '')
+    confirm = request.form.get('confirm_password', '')
+
+    if not name or not email or not password:
+        flash('Please fill all required fields', 'error')
+        return redirect(url_for('get_started'))
+    if password != confirm:
+        flash('Passwords do not match', 'error')
+        return redirect(url_for('get_started'))
+    if User.query.filter_by(email=email).first():
+        flash('Email already registered. Please login.', 'error')
+        return redirect(url_for('sign_in'))
+
+    user = User(name=name, email=email)
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+    session['user_id'] = user.id
+    session['user_name'] = user.name
+    flash('Welcome to ServiceGeni!', 'success')
+    return redirect(url_for('homepage'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def sign_in():
+    if request.method == 'POST':
+        email = request.form.get('email', '').strip().lower()
+        password = request.form.get('password', '')
+        user = User.query.filter_by(email=email).first()
+        if user and user.check_password(password):
+            session['user_id'] = user.id
+            session['user_name'] = user.name
+            flash('Logged in successfully', 'success')
+            return redirect(url_for('homepage'))
+        flash('Invalid email or password', 'error')
+        return redirect(url_for('sign_in'))
+    return render_template('sign_in.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You have been logged out', 'success')
+    return redirect(url_for('homepage'))
+
 @app.route('/knowledge-base')
 def knowledge_base():
     # Convert list to dictionary for template compatibility
@@ -221,10 +301,6 @@ def submit_ticket():
         return render_template('ticket_success.html', ticket_id=ticket_id, subject=subject, email=email)
     return render_template('submit_ticket.html')
 
-@app.route('/sign-in')
-def sign_in():
-    return render_template('sign_in.html')
-
 # Marketing pages based on screenshots
 @app.route('/product')
 def product():
@@ -241,10 +317,6 @@ def contact():
 @app.route('/support')
 def support():
     return render_template('marketing_support.html')
-
-@app.route('/login')
-def login():
-    return render_template('sign_in.html')
 
 @app.route('/blog')
 def blog():

@@ -43,37 +43,48 @@
 <section style="max-width:1000px; margin: 0 auto; padding: 0 2rem 4rem;">
   <h3 style="text-align:center; font-size:2rem; font-weight:800; margin-bottom:1.5rem;">Ready to launch this sucker? Fill out this form!</h3>
   
-  <form class="gs-form" method="post" action="#">
+  <form class="gs-form" method="post" action="{{ url_for('sign_up') }}">
     <div class="row">
       <div>
         <label>First Name *</label>
-        <input required placeholder="Please enter your first name here" />
+        <input name="first_name" required placeholder="Please enter your first name here" />
       </div>
       <div>
         <label>Last Name *</label>
-        <input required placeholder="Please enter your last name here" />
+        <input name="last_name" required placeholder="Please enter your last name here" />
       </div>
     </div>
 
     <div>
       <label>Email *</label>
-      <input type="email" required placeholder="example@example.com" />
+      <input name="email" type="email" required placeholder="example@example.com" />
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Password *</label>
+        <input name="password" type="password" minlength="6" required placeholder="Choose a strong password" />
+      </div>
+      <div>
+        <label>Confirm Password *</label>
+        <input name="confirm_password" type="password" minlength="6" required placeholder="Re-enter your password" />
+      </div>
     </div>
 
     <div>
       <label>Phone *</label>
-      <input type="tel" required placeholder="Please enter your phone number here" />
+      <input name="phone" type="tel" required placeholder="Please enter your phone number here" />
       <div style="color:#6b7280; font-size:.95rem; margin-top:.25rem;">please enter a valid phone number we can reach you at</div>
     </div>
 
     <div>
       <label>Business Name *</label>
-      <input required placeholder="Enter the Name of your Business Here" />
+      <input name="business_name" required placeholder="Enter the Name of your Business Here" />
     </div>
 
     <div>
       <label>What Shop Management Software does your Business use? *</label>
-      <select required>
+      <select name="sms" required>
         <option>Mitchell 1</option>
         <option>Protractor</option>
         <option>RO Writer</option>
@@ -85,7 +96,7 @@
 
     <div>
       <label>Which features are you most interested in exploring? *</label>
-      <select required>
+      <select name="interest" required>
         <option>Sales Analytics</option>
         <option>Customer Engagement (Scheduler, CRM, AI Scoring, DVIs, Calls & SMS)</option>
         <option>Both Sales Analytics and Customer Engagement</option>
@@ -95,7 +106,7 @@
 
     <div>
       <label>How did you hear about us? *</label>
-      <select required>
+      <select name="referrer" required>
         <option>Coaching Company</option>
         <option>Fellow Shop Owner</option>
         <option>Google Search</option>
