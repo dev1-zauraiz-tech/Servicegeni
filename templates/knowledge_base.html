@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Knowledge Base - ServiceGeni{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="text-center mb-4">
+    <div class="card">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1f2937;">Knowledge Base</h1>
+        <p style="font-size: 1.2rem; color: #6b7280;">Find answers to common questions and learn how to make the most of ServiceGeni services</p>
+    </div>
+</div>
+
+<!-- Popular Articles -->
+<div class="card">
+    <h2 style="margin-bottom: 2rem; color: #1f2937;">
+        <i class="fas fa-fire" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+        Popular Articles
+    </h2>
+    
+    <div class="article-grid">
+        {% for article_id, article in articles.items() %}
+        <a href="{{ url_for('article_detail', article_id=article_id) }}" class="article-card">
+            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                <div style="background: #dbeafe; padding: 0.75rem; border-radius: 8px; min-width: 40px; text-align: center;">
+                    {% if 'employee' in article_id or 'user' in article_id %}
+                        <i class="fas fa-users" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'training' in article_id %}
+                        <i class="fas fa-graduation-cap" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'phone' in article_id %}
+                        <i class="fas fa-phone" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'release' in article_id %}
+                        <i class="fas fa-file-alt" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'connect' in article_id %}
+                        <i class="fas fa-plug" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'onboarding' in article_id %}
+                        <i class="fas fa-rocket" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'shop' in article_id %}
+                        <i class="fas fa-store" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'yealink' in article_id %}
+                        <i class="fas fa-phone-alt" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'payment' in article_id %}
+                        <i class="fas fa-credit-card" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% elif 'report' in article_id %}
+                        <i class="fas fa-chart-bar" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% else %}
+                        <i class="fas fa-file-text" style="color: #2563eb; font-size: 1.2rem;"></i>
+                    {% endif %}
+                </div>
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: between; align-items: flex-start; margin-bottom: 0.5rem;">
+                        <span style="background: #f0f9ff; color: #1e40af; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">
+                            {{ article.category }}
+                        </span>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem; color: #1f2937; font-size: 1.1rem; line-height: 1.4;">{{ article.title }}</h3>
+                    <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.4; margin: 0;">
+                        {% if 'employee' in article_id %}
+                            Learn how to add, remove, and manage user accounts and permissions in your system.
+                        {% elif 'training' in article_id %}
+                            Comprehensive training materials and session schedules for new users.
+                        {% elif 'phone' in article_id %}
+                            Step-by-step guide to maintain business continuity during outages.
+                        {% elif 'release' in article_id %}
+                            Latest updates, new features, and bug fixes in ServiceGeni.
+                        {% elif 'connect' in article_id %}
+                            Everything you need to know about DC Connect+ features and setup.
+                        {% elif 'onboarding' in article_id %}
+                            Complete onboarding process and timeline for new customers.
+                        {% elif 'shop' in article_id %}
+                            Guide to expanding your account with additional shop locations.
+                        {% elif 'yealink' in article_id %}
+                            Quick reference guide for common Yealink phone operations.
+                        {% elif 'payment' in article_id %}
+                            Complete tutorial on setting up and using 360 Payments.
+                        {% elif 'report' in article_id %}
+                            Understanding and generating detailed RO reports.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Submit a Ticket Section -->
+<div class="card mt-4" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white;">
+    <div style="text-align: center;">
+        <div style="background: rgba(255, 255, 255, 0.2); padding: 1rem; border-radius: 50%; width: 60px; height: 60px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-ticket-alt" style="font-size: 1.8rem;"></i>
+        </div>
+        <h2 style="margin-bottom: 1rem; font-size: 1.8rem;">Still can't find an answer?</h2>
+        <p style="margin-bottom: 2rem; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); max-width: 600px; margin-left: auto; margin-right: auto;">
+            Our support team is here to help. Submit a ticket with your specific question or issue, and we'll get back to you as soon as possible.
+        </p>
+        <a href="{{ url_for('submit_ticket') }}" class="btn" style="background: white; color: #f97316; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; border-radius: 12px; transition: all 0.3s ease;">
+            <i class="fas fa-paper-plane"></i>
+            Submit a Ticket
+        </a>
+    </div>
+</div>
+{% endblock %}

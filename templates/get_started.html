@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Get Started - ServiceGeni{% endblock %}
+
+{% block content %}
+<style>
+    .main-content .container { max-width: none; margin: 0; padding: 0; }
+    .main-content { padding: 0; }
+    .gs-form input, .gs-form select, .gs-form textarea {
+        width: 100%; padding: 0.9rem 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem;
+    }
+    .gs-form label { display: block; margin-bottom: .5rem; font-weight: 600; color: #1f2937; }
+    .gs-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 800px) { .gs-form .row { grid-template-columns: 1fr; } }
+</style>
+
+<!-- Hero -->
+<div style="background: linear-gradient(135deg,#0b1b3f,#0a1733); color: #fff; position: relative; overflow: hidden;">
+  <div style="position:absolute; inset:0; opacity:.25; background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent), radial-gradient(1px 1px at 120px 80px, #fff, transparent), radial-gradient(1px 1px at 220px 40px, #fff, transparent); background-size: 200px 100px;"></div>
+  <div style="position:relative; z-index:1; max-width:1200px; margin:0 auto; padding: 5rem 2rem 6rem; text-align:center;">
+    <div style="font-size:3.2rem; font-weight:800;">Let's Get Started</div>
+  </div>
+  <svg viewBox="0 0 1440 120" style="display:block; width:100%; height:auto;" preserveAspectRatio="none">
+    <path fill="#fff" d="M0,64L48,64C96,64,192,64,288,58.7C384,53,480,43,576,64C672,85,768,139,864,138.7C960,139,1056,85,1152,69.3C1248,53,1344,75,1392,85.3L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z" />
+  </svg>
+</div>
+
+<!-- Intro -->
+<section style="max-width:1000px; margin: 0 auto; padding: 2rem; text-align:center;">
+  <h2 style="font-size:2.5rem; font-weight:800; margin-bottom:1rem;">T Minus 10 to Liftoff…</h2>
+  <p style="font-size:1.25rem; color:#374151; line-height:1.8; max-width:920px; margin:0 auto 1.25rem;">
+    Fill out the onboarding form below. You will receive an email with instructions to enable your integration.
+  </p>
+  <ul style="text-align:left; max-width:920px; margin:0 auto; font-size:1.1rem; color:#374151; line-height:1.9;">
+    <li>If you use cloud-based systems like TekMetric, ShopWare, or Protractor, you can enable this yourself with the provided instructions.</li>
+    <li>If you use RO Writer or Mitchell 1, you will schedule an installation appointment and we will complete the setup.</li>
+    <li>Once enabled, we’ll create your user account and add you to the ServiceGeni system.</li>
+  </ul>
+</section>
+
+<hr style="max-width:1000px; margin: 2rem auto; border:none; height:1px; background:#e5e7eb;" />
+
+<section style="max-width:1000px; margin: 0 auto; padding: 0 2rem 4rem;">
+  <h3 style="text-align:center; font-size:2rem; font-weight:800; margin-bottom:1.5rem;">Ready to launch this sucker? Fill out this form!</h3>
+  
+  <form class="gs-form" method="post" action="#">
+    <div class="row">
+      <div>
+        <label>First Name *</label>
+        <input required placeholder="Please enter your first name here" />
+      </div>
+      <div>
+        <label>Last Name *</label>
+        <input required placeholder="Please enter your last name here" />
+      </div>
+    </div>
+
+    <div>
+      <label>Email *</label>
+      <input type="email" required placeholder="example@example.com" />
+    </div>
+
+    <div>
+      <label>Phone *</label>
+      <input type="tel" required placeholder="Please enter your phone number here" />
+      <div style="color:#6b7280; font-size:.95rem; margin-top:.25rem;">please enter a valid phone number we can reach you at</div>
+    </div>
+
+    <div>
+      <label>Business Name *</label>
+      <input required placeholder="Enter the Name of your Business Here" />
+    </div>
+
+    <div>
+      <label>What Shop Management Software does your Business use? *</label>
+      <select required>
+        <option>Mitchell 1</option>
+        <option>Protractor</option>
+        <option>RO Writer</option>
+        <option>Shopware</option>
+        <option>TekMetric</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Which features are you most interested in exploring? *</label>
+      <select required>
+        <option>Sales Analytics</option>
+        <option>Customer Engagement (Scheduler, CRM, AI Scoring, DVIs, Calls & SMS)</option>
+        <option>Both Sales Analytics and Customer Engagement</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div>
+      <label>How did you hear about us? *</label>
+      <select required>
+        <option>Coaching Company</option>
+        <option>Fellow Shop Owner</option>
+        <option>Google Search</option>
+        <option>Social Media</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div style="display:flex; gap:1rem; justify-content:center; margin-top:1.5rem;">
+      <button type="button" class="btn" style="background:#e5e7eb; color:#111827;">Save For Later</button>
+      <button type="submit" class="btn" style="background:#10b981; color:white;">Submit</button>
+    </div>
+    <p style="text-align:center; color:#6b7280; margin-top:1rem;">By hitting “submit,” you agree to receive email communications from ServiceGeni.</p>
+  </form>
+</section>
+{% endblock %}

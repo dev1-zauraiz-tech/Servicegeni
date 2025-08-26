@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Support - ServiceGeni{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Support</h1>
+  <p class="text-muted">Browse the knowledge base or submit a ticket.</p>
+  <a class="btn btn-primary" href="{{ url_for('knowledge_base') }}">Knowledge Base</a>
+  <a class="btn btn-orange" href="{{ url_for('submit_ticket') }}">Submit Ticket</a>
+</div>
+{% endblock %}

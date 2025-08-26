@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - ServiceGeni{% endblock %}
+
+{% block content %}
+<!-- Back Navigation -->
+<div class="mb-4">
+    <a href="{{ url_for('homepage') }}" style="color: #2563eb; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; font-weight: 500; transition: color 0.3s ease;">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+</div>
+
+<!-- Search Header -->
+<div class="card mb-4">
+    <h1 style="font-size: 2rem; margin-bottom: 1rem; color: #1f2937;">
+        <i class="fas fa-search" style="color: #2563eb; margin-right: 0.5rem;"></i>
+        Search Results
+    </h1>
+    {% if query %}
+        <p style="font-size: 1.1rem; color: #6b7280;">
+            Showing results for: <strong>"{{ query }}"</strong>
+        </p>
+        <p style="color: #6b7280; margin-top: 0.5rem;">
+            Found {{ results|length }} result{{ 's' if results|length != 1 else '' }}
+        </p>
+    {% else %}
+        <p style="font-size: 1.1rem; color: #6b7280;">Please enter a search term</p>
+    {% endif %}
+</div>
+
+<!-- Search Form -->
+<div class="card mb-4">
+    <form action="{{ url_for('search') }}" method="GET">
+        <div style="position: relative;">
+            <i class="fas fa-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #6b7280;"></i>
+            <input type="text" name="q" value="{{ query }}" class="form-control" style="padding-left: 3rem; font-size: 1.1rem;" placeholder="Search for articles, guides, and solutions..." autocomplete="off">
+        </div>
+    </form>
+</div>
+
+<!-- Search Results -->
+{% if results %}
+    <div class="article-grid">
+        {% for result in results %}
+        <a href="{{ url_for('article_detail', article_id=result.id) }}" class="article-card">
+            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                <div style="background: #dbeafe; padding: 0.75rem; border-radius: 8px; min-width: 40px; text-align: center;">
+                    <i class="fas fa-file-text" style="color: #2563eb; font-size: 1.2rem;"></i>
+                </div>
+                <div style="flex: 1;">
+                    <div style="margin-bottom: 0.5rem;">
+                        <span style="background: #f0f9ff; color: #1e40af; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">
+                            {{ result.category }}
+                        </span>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem; color: #1f2937; font-size: 1.1rem; line-height: 1.4;">{{ result.title }}</h3>
+                    <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.4; margin: 0;">{{ result.snippet }}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+{% elif query %}
+    <!-- No Results -->
+    <div class="card" style="text-align: center; padding: 3rem;">
+        <div style="background: #fef3c7; padding: 2rem; border-radius: 50%; width: 100px; height: 100px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-search" style="color: #d97706; font-size: 2.5rem;"></i>
+        </div>
+        <h2 style="margin-bottom: 1rem; color: #1f2937;">No results found</h2>
+        <p style="color: #6b7280; margin-bottom: 2rem; font-size: 1.1rem;">
+            We couldn't find any articles matching "<strong>{{ query }}</strong>". Try different keywords or browse our popular articles.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="{{ url_for('knowledge_base') }}" class="btn btn-primary">
+                <i class="fas fa-book"></i>
+                Browse Knowledge Base
+            </a>
+            <a href="{{ url_for('submit_ticket') }}" class="btn btn-orange">
+                <i class="fas fa-life-ring"></i>
+                Get Support
+            </a>
+        </div>
+    </div>
+{% endif %}
+
+<!-- Helpful Links -->
+{% if not results or not query %}
+<div class="card mt-4">
+    <h3 style="margin-bottom: 1.5rem; color: #1f2937;">Popular Topics</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <a href="{{ url_for('article_detail', article_id='employee-user-management') }}" style="color: #2563eb; text-decoration: none; padding: 1rem; background: #f0f9ff; border-radius: 8px; transition: background 0.3s ease;">
+            <i class="fas fa-users" style="margin-right: 0.5rem;"></i>
+            User Management
+        </a>
+        <a href="{{ url_for('article_detail', article_id='phone-redirect-outages') }}" style="color: #2563eb; text-decoration: none; padding: 1rem; background: #f0f9ff; border-radius: 8px; transition: background 0.3s ease;">
+            <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>
+            Phone System
+        </a>
+        <a href="{{ url_for('article_detail', article_id='servicegeni-training-sessions') }}" style="color: #2563eb; text-decoration: none; padding: 1rem; background: #f0f9ff; border-radius: 8px; transition: background 0.3s ease;">
+            <i class="fas fa-graduation-cap" style="margin-right: 0.5rem;"></i>
+            Training
+        </a>
+        <a href="{{ url_for('article_detail', article_id='360-payments-tutorial') }}" style="color: #2563eb; text-decoration: none; padding: 1rem; background: #f0f9ff; border-radius: 8px; transition: background 0.3s ease;">
+            <i class="fas fa-credit-card" style="margin-right: 0.5rem;"></i>
+            Payments
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

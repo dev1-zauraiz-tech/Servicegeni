@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Pricing - ServiceGeni{% endblock %}
+
+{% block content %}
+<!-- Override base template container for full-width pricing page -->
+<style>
+    /* Override base template container for full-width pricing page */
+    .main-content .container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Ensure all sections are full-width */
+    .main-content {
+        padding: 0;
+    }
+</style>
+
+<!-- Hero Section -->
+<div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); min-height: 40vh; position: relative; overflow: hidden;">
+    <!-- Star background -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent), radial-gradient(2px 2px at 40px 70px, #fff, transparent), radial-gradient(1px 1px at 90px 40px, #fff, transparent), radial-gradient(1px 1px at 130px 80px, #fff, transparent); background-repeat: repeat; background-size: 200px 100px; opacity: 0.3;"></div>
+    
+    <div style="position: relative; z-index: 10; padding: 4rem 2rem; text-align: center; max-width: 1200px; margin: 0 auto;">
+        <h1 style="font-size: 3.5rem; font-weight: bold; color: white; margin-bottom: 1.5rem; line-height: 1.2;">
+            Find Your Perfect Plan
+            <i class="fas fa-rocket" style="color: #ec4899; margin-left: 1rem;"></i>
+        </h1>
+        <p style="font-size: 1.3rem; color: #cbd5e1; max-width: 600px; margin: 0 auto;">
+            Simple, transparent pricing with everything you need to grow your shop
+        </p>
+    </div>
+</div>
+
+<!-- Pricing Section -->
+<div style="background: white; padding: 6rem 2rem;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <!-- Launch Pad -->
+            <div style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 2rem; position: relative; background: white;">
+                <h3 style="font-size: 1.5rem; font-weight: bold; color: #16a34a; margin-bottom: 1rem;">Launch Pad</h3>
+                <div style="font-size: 3rem; font-weight: bold; color: #1f2937; margin-bottom: 0.5rem;">$397</div>
+                <div style="color: #6b7280; margin-bottom: 2rem;">per month</div>
+                <ul style="text-align: left; margin-bottom: 2rem; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>CRM</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>Sales Analytics</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>Online Scheduler</li>
+                </ul>
+                <a href="#" class="btn" style="background: #fbbf24; color: black; font-weight: bold; width: 100%; text-align: center; text-decoration: none; padding: 1rem; border-radius: 8px;">
+                    Learn More
+                </a>
+            </div>
+            
+            <!-- Lift Off -->
+            <div style="border: 3px solid #3b82f6; border-radius: 12px; padding: 2rem; position: relative; background: white; transform: scale(1.05);">
+                <div style="position: absolute; top: -12px; right: 20px; background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">Most Popular</div>
+                <h3 style="font-size: 1.5rem; font-weight: bold; color: #3b82f6; margin-bottom: 1rem;">Lift Off</h3>
+                <div style="font-size: 3rem; font-weight: bold; color: #1f2937; margin-bottom: 0.5rem;">$797</div>
+                <div style="color: #6b7280; margin-bottom: 2rem;">per month</div>
+                <ul style="text-align: left; margin-bottom: 2rem; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>CRM</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>Sales Analytics</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>Online Scheduler</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>Phone System</li>
+                </ul>
+                <a href="#" class="btn" style="background: #3b82f6; color: white; font-weight: bold; width: 100%; text-align: center; text-decoration: none; padding: 1rem; border-radius: 8px;">
+                    Learn More
+                </a>
+            </div>
+            
+            <!-- Count Down -->
+            <div style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 2rem; position: relative; background: white;">
+                <h3 style="font-size: 1.5rem; font-weight: bold; color: #ea580c; margin-bottom: 1rem;">Count Down</h3>
+                <div style="font-size: 3rem; font-weight: bold; color: #1f2937; margin-bottom: 0.5rem;">$497</div>
+                <div style="color: #6b7280; margin-bottom: 2rem;">per month</div>
+                <ul style="text-align: left; margin-bottom: 2rem; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>Phone System</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>AI Scoring (Calls & SMS)</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>Call Tracking (Inbound & Outbound)</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #16a34a; margin-right: 0.5rem;"></i>Mobile App</li>
+                </ul>
+                <a href="#" class="btn" style="background: #fbbf24; color: black; font-weight: bold; width: 100%; text-align: center; text-decoration: none; padding: 1rem; border-radius: 8px;">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div style="background: #f8fafc; padding: 4rem 2rem;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="font-size: 2.5rem; font-weight: bold; color: #1f2937; text-align: center; margin-bottom: 3rem;">Frequently Asked Questions</h2>
+        
+        <div style="display: grid; gap: 2rem;">
+            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">Can I change my plan later?</h3>
+                <p style="color: #6b7280; line-height: 1.6;">Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.</p>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">Is there a setup fee?</h3>
+                <p style="color: #6b7280; line-height: 1.6;">No setup fees! We believe in transparent pricing. You only pay the monthly subscription fee.</p>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">Do you offer a free trial?</h3>
+                <p style="color: #6b7280; line-height: 1.6;">Yes, we offer a 14-day free trial on all plans. No credit card required to start your trial.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action Section -->
+<div style="background: #3b82f6; padding: 4rem 2rem; text-align: center;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h2 style="font-size: 2.5rem; font-weight: bold; color: white; margin-bottom: 2rem;">Ready to Get Started?</h2>
+        <p style="font-size: 1.2rem; color: #cbd5e1; margin-bottom: 2rem;">
+            Start your 14-day free trial today. No credit card required.
+        </p>
+        <a href="#" class="btn" style="background: #fbbf24; color: black; font-weight: bold; padding: 1rem 3rem; font-size: 1.2rem; border-radius: 12px; text-decoration: none; display: inline-block;">
+            Start Free Trial
+        </a>
+    </div>
+</div>
+{% endblock %}

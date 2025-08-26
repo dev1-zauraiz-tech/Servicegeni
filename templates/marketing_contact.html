@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - ServiceGeni{% endblock %}
+
+{% block content %}
+<!-- Override base template container for full-width contact page -->
+<style>
+    /* Override base template container for full-width contact page */
+    .main-content .container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Ensure all sections are full-width */
+    .main-content {
+        padding: 0;
+    }
+</style>
+
+<!-- Hero Section -->
+<div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); min-height: 40vh; position: relative; overflow: hidden;">
+    <!-- Star background -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent), radial-gradient(2px 2px at 40px 70px, #fff, transparent), radial-gradient(1px 1px at 90px 40px, #fff, transparent), radial-gradient(1px 1px at 130px 80px, #fff, transparent); background-repeat: repeat; background-size: 200px 100px; opacity: 0.3;"></div>
+    
+    <div style="position: relative; z-index: 10; padding: 4rem 2rem; text-align: center; max-width: 1200px; margin: 0 auto;">
+        <h1 style="font-size: 3.5rem; font-weight: bold; color: white; margin-bottom: 1.5rem; line-height: 1.2;">
+            Get in Touch
+        </h1>
+        <p style="font-size: 1.3rem; color: #cbd5e1; max-width: 600px; margin: 0 auto;">
+            We're here to help you transform your auto repair business
+        </p>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div style="background: white; padding: 6rem 2rem;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+        <!-- Contact Information -->
+        <div>
+            <h2 style="font-size: 2.5rem; font-weight: bold; color: #1f2937; margin-bottom: 2rem;">Contact Information</h2>
+            
+            <div style="display: grid; gap: 2rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="background: #3b82f6; padding: 1rem; border-radius: 12px; color: white;">
+                        <i class="fas fa-phone" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 0.5rem;">Phone</h3>
+                        <p style="color: #6b7280; font-size: 1.1rem;">(847) 243-6921</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="background: #3b82f6; padding: 1rem; border-radius: 12px; color: white;">
+                        <i class="fas fa-envelope" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 0.5rem;">Email</h3>
+                        <p style="color: #6b7280; font-size: 1.1rem;">support@servicegeni.example</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="background: #3b82f6; padding: 1rem; border-radius: 12px; color: white;">
+                        <i class="fas fa-clock" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 0.5rem;">Business Hours</h3>
+                        <p style="color: #6b7280; font-size: 1.1rem;">Monday - Friday: 8AM - 6PM CST</p>
+                        <p style="color: #6b7280; font-size: 1.1rem;">Saturday: 9AM - 2PM CST</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="background: #3b82f6; padding: 1rem; border-radius: 12px; color: white;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 0.5rem;">Address</h3>
+                        <p style="color: #6b7280; font-size: 1.1rem;">123 Business Street</p>
+                        <p style="color: #6b7280; font-size: 1.1rem;">Chicago, IL 60601</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px;">
+            <h3 style="font-size: 1.8rem; font-weight: bold; color: #1f2937; margin-bottom: 2rem;">Send us a Message</h3>
+            
+            <form style="display: grid; gap: 1.5rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Name</label>
+                    <input type="text" style="width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;" placeholder="Your full name">
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Email</label>
+                    <input type="email" style="width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;" placeholder="your.email@example.com">
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Phone</label>
+                    <input type="tel" style="width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;" placeholder="(555) 123-4567">
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Subject</label>
+                    <select style="width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem;">
+                        <option>General Inquiry</option>
+                        <option>Sales Question</option>
+                        <option>Technical Support</option>
+                        <option>Partnership</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Message</label>
+                    <textarea rows="5" style="width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; resize: vertical;" placeholder="Tell us how we can help you..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: bold;">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div style="background: #f8fafc; padding: 4rem 2rem;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="font-size: 2.5rem; font-weight: bold; color: #1f2937; text-align: center; margin-bottom: 3rem;">Frequently Asked Questions</h2>
+        
+        <div style="display: grid; gap: 2rem;">
+            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">How quickly do you respond to inquiries?</h3>
+                <p style="color: #6b7280; line-height: 1.6;">We typically respond to all inquiries within 24 hours during business days. For urgent matters, please call us directly.</p>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">Do you offer demos?</h3>
+                <p style="color: #6b7280; line-height: 1.6;">Yes! We offer personalized demos to show you how ServiceGeni can work for your specific shop. Contact us to schedule a demo.</p>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.2rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">What support do you provide?</h3>
+                <p style="color: #6b7280; line-height: 1.6;">We provide comprehensive support including phone support, email support, live chat, and a detailed knowledge base with training materials.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

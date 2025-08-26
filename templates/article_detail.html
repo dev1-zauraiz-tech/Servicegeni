@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - ServiceGeni{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+        <div style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); padding: 1rem; border-radius: 12px; color: white;">
+            <i class="fas fa-file-alt" style="font-size: 1.5rem;"></i>
+        </div>
+        <div>
+            <h1 style="margin-bottom: 0.5rem; color: #1f2937;">{{ article.title }}</h1>
+            <div style="display: flex; gap: 1rem; color: #6b7280; font-size: 0.9rem;">
+                <span><i class="fas fa-calendar"></i> {{ article.lastUpdated }}</span>
+                <span><i class="fas fa-user"></i> {{ article.author }}</span>
+                <span><i class="fas fa-tag"></i> {{ article.category }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <div style="background: #f3f4f6; padding: 1rem; border-radius: 8px; border-left: 4px solid #2563eb;">
+            <h3 style="margin-bottom: 0.5rem; color: #1f2937;">
+                <i class="fas fa-info-circle" style="color: #2563eb;"></i>
+                Quick Summary
+            </h3>
+            <p style="color: #6b7280; margin: 0;">{{ article.summary }}</p>
+        </div>
+    </div>
+
+    <div style="line-height: 1.8; color: #374151;">
+        {{ article.content | safe }}
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">
+        <h3 style="margin-bottom: 1rem; color: #1f2937;">Was this article helpful?</h3>
+        <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+            <button onclick="submitFeedback({{ article.id }}, 'helpful')" class="btn btn-primary">
+                <i class="fas fa-thumbs-up"></i> Yes, helpful
+            </button>
+            <button onclick="submitFeedback({{ article.id }}, 'not_helpful')" class="btn btn-secondary">
+                <i class="fas fa-thumbs-down"></i> Not helpful
+            </button>
+        </div>
+        <div id="feedback-message" style="display: none; padding: 1rem; border-radius: 8px; margin-top: 1rem;"></div>
+    </div>
+
+    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">
+        <h3 style="margin-bottom: 1rem; color: #1f2937;">Related Articles</h3>
+        <div class="article-grid">
+            <a href="{{ url_for('article_detail', article_id='phone-redirect-outages') }}" class="article-card">
+                <h4 style="margin-bottom: 0.5rem; color: #2563eb;">
+                    <i class="fas fa-phone"></i>
+                    Phone Call Redirection During Outages
+                </h4>
+                <p style="color: #6b7280; font-size: 0.9rem;">Learn how to redirect calls when your main system is down</p>
+            </a>
+            
+            <a href="{{ url_for('article_detail', article_id='dc-connect-plus') }}" class="article-card">
+                <h4 style="margin-bottom: 0.5rem; color: #2563eb;">
+                    <i class="fas fa-plug"></i>
+                    DC Connect+ Integration
+                </h4>
+                <p style="color: #6b7280; font-size: 0.9rem;">Advanced integration features and automation</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function submitFeedback(articleId, feedback) {
+    fetch(`/api/article-feedback/${articleId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ feedback: feedback })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const messageDiv = document.getElementById('feedback-message');
+        messageDiv.style.display = 'block';
+        messageDiv.style.backgroundColor = '#d1fae5';
+        messageDiv.style.color = '#065f46';
+        messageDiv.style.border = '1px solid #a7f3d0';
+        messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> Thank you for your feedback!';
+        
+        // Disable buttons after feedback
+        document.querySelectorAll('button').forEach(btn => btn.disabled = true);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        const messageDiv = document.getElementById('feedback-message');
+        messageDiv.style.display = 'block';
+        messageDiv.style.backgroundColor = '#fee2e2';
+        messageDiv.style.color = '#991b1b';
+        messageDiv.style.border = '1px solid #fca5a5';
+        messageDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error submitting feedback. Please try again.';
+    });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Ticket Submitted - ServiceGeni{% endblock %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 3rem auto; text-align: center;">
+    <div class="card">
+        <!-- Success Icon -->
+        <div style="background: #10b981; color: white; padding: 2rem; border-radius: 50%; width: 100px; height: 100px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-check-circle" style="font-size: 3rem;"></i>
+        </div>
+
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1f2937;">Ticket Submitted Successfully!</h1>
+        
+        <p style="font-size: 1.2rem; color: #6b7280; margin-bottom: 2rem; line-height: 1.6;">
+            Thank you for contacting us. We've received your support ticket and our team will get back to you within <strong>24 hours</strong>.
+        </p>
+
+        <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #bfdbfe;">
+            <p style="color: #1f2937; margin-bottom: 0.5rem;">Your ticket ID:</p>
+            <p style="font-family: 'Courier New', monospace; font-size: 1.3rem; font-weight: bold; color: #2563eb; margin: 0;">
+                #TR-{{ range(100000, 999999) | random }}
+            </p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="{{ url_for('homepage') }}" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                Return Home
+            </a>
+            <a href="{{ url_for('knowledge_base') }}" class="btn btn-secondary">
+                <i class="fas fa-book"></i>
+                Browse Articles
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Information -->
+<div class="card" style="max-width: 800px; margin: 2rem auto;">
+    <h3 style="margin-bottom: 1.5rem; color: #1f2937;">What happens next?</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+        <div style="text-align: center;">
+            <div style="background: #dbeafe; padding: 1rem; border-radius: 50%; width: 60px; height: 60px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-envelope" style="color: #2563eb; font-size: 1.5rem;"></i>
+            </div>
+            <h4 style="margin-bottom: 0.5rem; color: #1f2937;">Email Confirmation</h4>
+            <p style="color: #6b7280; font-size: 0.9rem;">You'll receive an email confirmation with your ticket details.</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <div style="background: #fef3c7; padding: 1rem; border-radius: 50%; width: 60px; height: 60px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-user-tie" style="color: #d97706; font-size: 1.5rem;"></i>
+            </div>
+            <h4 style="margin-bottom: 0.5rem; color: #1f2937;">Assignment</h4>
+            <p style="color: #6b7280; font-size: 0.9rem;">Your ticket will be assigned to a specialist within our team.</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <div style="background: #dcfce7; padding: 1rem; border-radius: 50%; width: 60px; height: 60px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-phone" style="color: #16a34a; font-size: 1.5rem;"></i>
+            </div>
+            <h4 style="margin-bottom: 0.5rem; color: #1f2937;">Response</h4>
+            <p style="color: #6b7280; font-size: 0.9rem;">We'll contact you with a solution or follow-up questions.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
